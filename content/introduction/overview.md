@@ -1,10 +1,10 @@
 ---
-title: "Why Opencensus"
+title: "Overview"
 date: 2018-07-16T14:28:09-07:00
 draft: false
 weight: 1
 ---
-## Overview
+
 OpenCensus gives you the tools to track a request as it travels through each of your services, and it helps you gather any metrics that you need about your services.
 
 The core functionality of OpenCensus is to collect traces and metrics from your app, display them locally, and send them to any analysis tool. However, OpenCensus provides a lot more than just data insight. This page describes some of that functionality and points you to resources for building it into your app.
@@ -13,7 +13,7 @@ The core functionality of OpenCensus is to collect traces and metrics from your 
 Already familiar with distributed metric and tracing systems? [Click here](https://opencensus.io/docs/) for a full overview of our API to get started.
 {{% /notice %}}
 
-{{<button href="/quickstart" theme="info">}}Visit the Quick Start guide to begin{{</button>}}
+{{<button href="/quickstart" theme="info">}}Visit the Quickstart guide to begin{{</button>}}
 
 ## Why OpenCensus?
 
