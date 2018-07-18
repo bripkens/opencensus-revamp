@@ -13,7 +13,7 @@ The core functionality of OpenCensus is to collect traces and metrics from your 
 Already familiar with distributed metric and tracing systems? [Click here](https://opencensus.io/docs/) for a full overview of our API to get started.
 {{% /notice %}}
 
-{{<button href="/quickstart" theme="info">}}Visit the Quickstart guide to begin{{</button>}}
+{{<button href="/quickstart" class="btn-info">}}Visit the Quickstart guide to begin{{</button>}}
 
 ## Why OpenCensus?
 

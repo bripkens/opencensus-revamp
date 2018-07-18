@@ -1,0 +1,6 @@
+{{ with .Get "align" }}<center>{{end}}
+<a
+  class="btn {{with .Get "class"}} {{.}} {{end}}"
+  {{ with .Get "href" }} onclick="location.href='{{.}}'"{{end}}
+>{{.Inner}}</a>
+{{ with .Get "align" }}</center>{{end}}

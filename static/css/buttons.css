@@ -1,0 +1,11 @@
+.btn.btn-info {
+  background-color: #2196F3;
+}
+
+.btn.btn-info:hover {
+  background-color: #1976D2;
+}
+
+.btn.btn-info:active {
+  background-color: ##0D47A1;
+}
