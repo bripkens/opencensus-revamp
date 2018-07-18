@@ -2,7 +2,7 @@ baseURL = "/"
 
 languageCode = "en-us"
 DefaultContentLanguage = "en"
-title = "OpenCensus Documentation"
+title = "OpenCensus"
 # themesdir = "../.."
 pygmentsCodeFences = true
 pygmentsStyle = "monokailight"
