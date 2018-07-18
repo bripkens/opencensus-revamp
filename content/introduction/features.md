@@ -15,3 +15,12 @@ OpenCensus is vendor-agnostic and can upload data to any backend with various ex
 Distributed traces track the progression of a single user request as it is handled by the internal services until the user request is responded. [Read more](/introduction/core-concepts/exporters/traces/).
 
 #### Context Propagation
+Context propagation is the mechanism by which information (of your choosing) is sent between your services. It is usually performed by sending data in HTTP headers and trailers.
+
+Typical information sent during context propagation includes:
+
+* Latency
+* CPU usage
+* Payload size
+* Open file descriptors
+* And more! It is up to you.
