@@ -1,0 +1,22 @@
+article section.page h1:first-of-type {
+  text-align: left;
+  border-left: solid #BF2A32 1px;
+  padding: 5px;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Novacento Sans Wide", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+  text-transform: uppercase;
+}
+
+p {
+  color: #555;
+}
+
+:not(pre) code,
+article section.page p > code {
+  background-color: rgba(27,31,35,.05);
+  /* background-color: #fafafa; */
+  padding: .3em;
+  font-family: "inconsolata", Menlo,Monaco, "Courier New",monospace;
+}
