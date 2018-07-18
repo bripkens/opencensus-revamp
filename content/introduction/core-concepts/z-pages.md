@@ -18,20 +18,21 @@ In order to serve Z-pages, register their handlers and
 start a web server. Below, there is an example how to
 serve these pages from `127.0.0.1:7777/debug`.
 
+{{<tabs Go Java>}}
+  {{<highlight go>}}
+    import "go.opencensus.io/zpages"
 
-```go
-import "go.opencensus.io/zpages"
+    zpages.Handle(nil, "/debug")
+    log.Fatal(http.ListenAndServe("127.0.0.1:7777", nil))
+  {{</highlight>}}
 
-zpages.Handle(nil, "/debug")
-log.Fatal(http.ListenAndServe("127.0.0.1:7777", nil))
-```
+  {{<highlight java>}}
+    // Add the dependencies by following the instructions at
+    // https://github.com/census-instrumentation/opencensus-java/tree/master/contrib/zpages
 
-```java
-// Add the dependencies by following the instructions at
-// https://github.com/census-instrumentation/opencensus-java/tree/master/contrib/zpages
-
-ZPageHandlers.startHttpServerAndRegisterAll(7777);
-```
+    ZPageHandlers.startHttpServerAndRegisterAll(7777);
+  {{</highlight>}}
+{{</tabs>}}
 
 Once handler is registered, there are various pages provided
 from the libraries:
