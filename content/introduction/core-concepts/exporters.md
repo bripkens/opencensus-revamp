@@ -18,30 +18,30 @@ As an example, a Prometheus exporter is registered and Prometheus is going to sc
 
 {{<tabs Go Java>}}
   {{<highlight go>}}
-    import (
-        "go.opencensus.io/exporter/prometheus"
-        "go.opencensus.io/stats/view"
-    )
+import (
+    "go.opencensus.io/exporter/prometheus"
+    "go.opencensus.io/stats/view"
+)
 
-    exporter, err := prometheus.NewExporter(prometheus.Options{})
-    if err != nil {
-        log.Fatal(err)
-    }
-    view.RegisterExporter(exporter)
+exporter, err := prometheus.NewExporter(prometheus.Options{})
+if err != nil {
+    log.Fatal(err)
+}
+view.RegisterExporter(exporter)
 
-    http.Handle("/metrics", exporter)
-    log.Fatal(http.ListenAndServe(":9091", nil))
+http.Handle("/metrics", exporter)
+log.Fatal(http.ListenAndServe(":9091", nil))
   {{</highlight>}}
 
   {{<highlight java>}}
-    // Add the dependencies by following the instructions at
-    // https://github.com/census-instrumentation/opencensus-java/tree/master/exporters/stats/prometheus.
+// Add the dependencies by following the instructions at
+// https://github.com/census-instrumentation/opencensus-java/tree/master/exporters/stats/prometheus
 
-    PrometheusStatsCollector.createAndRegister();
+PrometheusStatsCollector.createAndRegister();
 
-    // Uses a simple Prometheus HTTPServer to export metrics.
-    io.prometheus.client.exporter.HTTPServer server =
-        new HTTPServer("localhost", 9091, true);
+// Uses a simple Prometheus HTTPServer to export metrics.
+io.prometheus.client.exporter.HTTPServer server =
+    new HTTPServer("localhost", 9091, true);
   {{</highlight>}}
 {{</tabs>}}
 
@@ -52,30 +52,30 @@ to the registered Zipkin endpoint:
 
 {{<tabs Go Java>}}
   {{<highlight go>}}
-    import (
-        openzipkin "github.com/openzipkin/zipkin-go"
-        "github.com/openzipkin/zipkin-go/reporter/http"
-        "go.opencensus.io/exporter/zipkin"
-        "go.opencensus.io/trace"
-    )
+import (
+    openzipkin "github.com/openzipkin/zipkin-go"
+    "github.com/openzipkin/zipkin-go/reporter/http"
+    "go.opencensus.io/exporter/zipkin"
+    "go.opencensus.io/trace"
+)
 
-    localEndpoint, err := openzipkin.NewEndpoint("example-server", "192.168.1.5:5454")
-    if err != nil {
-        log.Println(err)
-    }
-    reporter := http.NewReporter("http://localhost:9411/api/v2/spans")
-    defer reporter.Close()
+localEndpoint, err := openzipkin.NewEndpoint("example-server", "192.168.1.5:5454")
+if err != nil {
+    log.Println(err)
+}
+reporter := http.NewReporter("http://localhost:9411/api/v2/spans")
+defer reporter.Close()
 
-    exporter := zipkin.NewExporter(reporter, localEndpoint)
-    trace.RegisterExporter(exporter)
+exporter := zipkin.NewExporter(reporter, localEndpoint)
+trace.RegisterExporter(exporter)
   {{</highlight>}}
 
   {{<highlight java>}}
-    // Add the dependencies by following the instructions
-    // at https://github.com/census-instrumentation/opencensus-java/tree/master/exporters/trace/zipkin.
+// Add the dependencies by following the instructions
+// at https://github.com/census-instrumentation/opencensus-java/tree/master/exporters/trace/zipkin
 
-    ZipkinTraceExporter.createAndRegister(
-        "http://localhost:9411/api/v2/spans", "example-server");
+ZipkinTraceExporter.createAndRegister(
+    "http://localhost:9411/api/v2/spans", "example-server");
   {{</highlight>}}
 {{</tabs>}}
 

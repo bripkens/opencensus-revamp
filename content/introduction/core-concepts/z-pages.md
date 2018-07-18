@@ -20,17 +20,17 @@ serve these pages from `127.0.0.1:7777/debug`.
 
 {{<tabs Go Java>}}
   {{<highlight go>}}
-    import "go.opencensus.io/zpages"
+import "go.opencensus.io/zpages"
 
-    zpages.Handle(nil, "/debug")
-    log.Fatal(http.ListenAndServe("127.0.0.1:7777", nil))
+zpages.Handle(nil, "/debug")
+log.Fatal(http.ListenAndServe("127.0.0.1:7777", nil))
   {{</highlight>}}
 
   {{<highlight java>}}
-    // Add the dependencies by following the instructions at
-    // https://github.com/census-instrumentation/opencensus-java/tree/master/contrib/zpages
+// Add the dependencies by following the instructions at
+// https://github.com/census-instrumentation/opencensus-java/tree/master/contrib/zpages
 
-    ZPageHandlers.startHttpServerAndRegisterAll(7777);
+ZPageHandlers.startHttpServerAndRegisterAll(7777);
   {{</highlight>}}
 {{</tabs>}}
 
