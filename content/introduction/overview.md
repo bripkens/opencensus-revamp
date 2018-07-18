@@ -18,7 +18,7 @@ Already familiar with distributed metric and tracing systems? [Click here](https
 ## Why OpenCensus?
 
 ##### Visualize Request Lifecycle
-You can track a request as it propagates throughout all of your services. Additionally, you can visualize your data in any backend with a one-step solution.
+You can track a request as it propagates throughout all of your services. Additionally, you can visualize your data in any [backend](/introduction/core-concepts/exporters/#supported-backends) with a one-step solution.
 
 ##### Perform Root-Cause Analysis
 Gain total situation-clarity in your distributed services architecture. When your service runs in to a problem, use OpenCensus to identify the point of failure.
