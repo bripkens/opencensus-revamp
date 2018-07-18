@@ -87,4 +87,7 @@ only be registered by main applications.
 
 #### Supported Backends
 
-Exporter support in each language for each backend:
+<abbr class="trace-exporter blue white-text">T</abbr> Backend supports Tracing
+
+<abbr class="stats-exporter teal white-text">S</abbr> Backend supports Stats
+{{<feature-matrix>}}
