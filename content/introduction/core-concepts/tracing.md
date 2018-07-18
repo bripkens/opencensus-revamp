@@ -15,7 +15,7 @@ latency issues of your application.
 
 ---
 
-## Spans
+#### Spans
 
 A trace is a tree of spans.
 
@@ -46,7 +46,7 @@ object. When crossing process boundaries, it is serialized into
 protocol headers. The receiving end can read the span context
 and create child spans.
 
-### Name
+#### Name
 
 Span names represent what span does. Span names should
 be statistically meaningful. Most tracing backend and analysis
@@ -59,7 +59,7 @@ Examples of span names:
 * "/messages" represents the messages web page.
 * "/api/user/(\\d+)" represents the user detail pages.
 
-### Status
+#### Status
 
 Status represents the current state of the span.
 It is represented by a canonical status code which maps onto a
@@ -74,7 +74,7 @@ Above, you can see `cache.Put` is errored because of the
 violation of the key size limit. As a result of this error,
  `/messages` request responded with an error to the user.
 
-### Annotations
+#### Annotations
 
 Annotations are timestamped strings with optional attributes.
 Annotations are used like log lines, but the log is per-Span.  
@@ -88,7 +88,7 @@ Example annotations:
 
 Annotations provide rich details to debug problems in the scope of a span.
 
-### Attributes
+#### Attributes
 
 Attributes are additional information that is included in the
 span which can represent arbitrary data assigned by the user.
@@ -108,7 +108,7 @@ using the example attributes above.
 
 ---
 
-## Sampling
+#### Sampling
 
 Trace data is often very large in size and is expensive to collect.
 This is why rather than collecting traces for every request, downsampling
@@ -130,7 +130,7 @@ There are two ways to set samplers:
 
 ---
 
-## Exporting
+#### Exporting
 
 Recorded spans will be reported by the registered exporters.
 
