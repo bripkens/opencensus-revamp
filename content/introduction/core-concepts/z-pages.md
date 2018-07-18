@@ -40,7 +40,7 @@ from the libraries:
 * [127.0.0.1:7777/debug/rpcz](http://127.0.0.1:7777/debug/rpcz)
 * [127.0.0.1:7777/debug/tracez](http://127.0.0.1:7777/debug/tracez)
 
-## /rpcz
+#### /rpcz
 
 Rpcz are available at [/rpcz](http://127.0.0.1:7777/debug/rpcz). This page serves
 stats about sent and recieved RPCs.
@@ -54,7 +54,7 @@ Available stats:
 * Output payload in KB/s in the last minute, hour and since the process started.
 * Number of RPC errors in the last minute, hour and in total.
 
-## /tracez
+#### /tracez
 
 Tracez are available at [/tracez](http://127.0.0.1:7777/debug/tracez). This page
 serves details about the trace spans collected
@@ -63,4 +63,4 @@ per latency bucket and sample errored spans.
 
 An example screenshot from this page is below:
 
-![/tracez](/img/traceZ.png)
+![/tracez](https://opencensus.io/img/traceZ.png)
