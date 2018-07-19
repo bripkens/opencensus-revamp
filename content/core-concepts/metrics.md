@@ -25,7 +25,7 @@ Stats collection requires two steps:
 
 ---
 
-## Measures  
+#### Measures  
 
 A measure represents a metric type to be recorded. For example, request latency
 in µs and request size in KBs are examples of measures to collect from a server.
@@ -44,7 +44,7 @@ RequestLatecy = {
 ```
 ---
 
-## Recording
+#### Recording
 Measurement is a data point to be collected for a measure. For example, for a latency (ms) measure, 100 is a measurement that represents a 100 ms latency event. Users collect data points on the existing measures with the current context. Tags from the current context are recorded with the measurements if they are any.  
 
 Recorded measurements are dropped if user is not aggregating them via views. Users don’t necessarily need to conditionally enable/disable recording to reduce cost. Recording of measurements is cheap.  
@@ -55,12 +55,12 @@ they want to collect.
 
 ---
 
-## Views
+#### Views
 
 In order to aggregate measurements and export, users need to define views.
 A view allows recorded measurements to be aggregated with a one of the
 aggregation methods set by the user cumulatively.
-All recorded measurements is broken down by user-provided [tag](/introduction/core-concepts/tags) keys.  
+All recorded measurements is broken down by user-provided [tag](/core-concepts/tags) keys.  
 
 Following aggregation methods are supported:  
 
@@ -74,7 +74,7 @@ export their own views and claim the view names by registering them.
 
 ---
 
-## Sampling
+#### Sampling
 
 Stats are NOT sampled to be able to represent uncommon
 cases. For example, a [99th percentile latency issue](https://www.youtube.com/watch?v=lJ8ydIuPFeU)
@@ -88,7 +88,7 @@ aggregated data.
 
 ---
 
-## Exporting
+#### Exporting
 
 Collected and aggregated data can be exported to a stats collection
 backend by registering an exporter.  
@@ -96,4 +96,4 @@ backend by registering an exporter.
 Multiple exporters can be registered to upload the data to various different backends.
 Users can unregister the exporters if they no longer are needed.
 
-See [exporters](/introduction/core-concepts/exporters) to learn more.
+See [exporters](/core-concepts/exporters) to learn more.

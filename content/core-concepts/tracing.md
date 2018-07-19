@@ -138,4 +138,4 @@ Multiple exporters can be registered to upload the data to
 various different backends. Users can unregister the exporters
 if they no longer are needed.
 
-See [exporters](/introduction/core-concepts/exporters) to learn more.
+See [exporters](/core-concepts/exporters) to learn more.

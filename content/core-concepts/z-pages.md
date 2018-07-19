@@ -12,7 +12,7 @@ distributed tracing backend.
 
 Z-Pages can be useful during the development time or when
 the process to be inspected is known in production.
-Z-Pages can also be used to debug [exporter](/introduction/core-concepts/exporters) issues.
+Z-Pages can also be used to debug [exporter](/core-concepts/exporters) issues.
 
 In order to serve Z-pages, register their handlers and
 start a web server. Below, there is an example how to
