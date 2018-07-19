@@ -9,6 +9,8 @@ OpenCensus gives you the tools to track a request as it travels through each of 
 
 The core functionality of OpenCensus is to collect traces and metrics from your app, display them locally, and send them to any analysis tool. However, OpenCensus provides a lot more than just data insight. This page describes some of that functionality and points you to resources for building it into your app.
 
+After [instrumenting](https://en.wikipedia.org/wiki/Instrumentation_(computer_programming)#Output) your code with OpenCensus, you will equip yourself with the ability to optimize the speed of your services, understand exactly how a request travels between your services, gather any useful metrics about your entire architecture, and more.
+
 {{% notice note %}}
 Already familiar with distributed metric and tracing systems? [Click here](https://opencensus.io/docs/) for a full overview of our API to get started.
 {{% /notice %}}
