@@ -20,3 +20,7 @@ article section.page p > code {
   padding: .3em;
   font-family: "inconsolata", Menlo,Monaco, "Courier New",monospace;
 }
+
+pre code {
+  background-color: #fafafa;
+}
