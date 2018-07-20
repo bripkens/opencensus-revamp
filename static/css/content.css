@@ -17,10 +17,18 @@ p {
 article section.page p > code {
   background-color: rgba(27,31,35,.05);
   /* background-color: #fafafa; */
-  padding: .3em;
+  padding: 1px;
   font-family: "inconsolata", Menlo,Monaco, "Courier New",monospace;
 }
 
 pre code {
   background-color: #fafafa;
+}
+
+div.tab-container ul.tabs {
+  padding-left: 0;
+}
+
+div.tab-container ul.tabs li.tab.active a {
+  background-color: rgba(246,178,181,0.2);
 }
