@@ -18,7 +18,7 @@ This guide makes use of Stackdriver for visualizing your data. For assistance se
     - [Instrumentation](#instrument-tracing)
 - [Exporting to Stackdriver](#exporting-to-stackdriver)
     - [Import Packages](#import-exporting-packages)
-    - [Register the Exporter](#export-tracing)
+    - [Export Traces](#export-traces)
     - [Create Annotations](#create-annotations)
 - [Viewing your Traces on Stackdriver](#viewing-your-traces-on-stackdriver)
 
@@ -346,6 +346,7 @@ When creating a new span with `trace.StartSpan(context.Context, "spanName")`, th
 
 #### Exporting to Stackdriver
 
+<a name="import-exporting-packages"></a>
 ##### Import Packages
 To turn on Stackdriver Tracing, we’ll need to import the Stackdriver exporter from `contrib.go.opencensus.io/exporter/stackdriver`.
 
@@ -722,8 +723,6 @@ With the above you should now be able to navigate to the [Google Cloud Platform 
 
 ![viewing traces 1](https://cdn-images-1.medium.com/max/1600/1*v7qiO8nX8WAxpX4LjiQ2oA.png)
 
-And on clicking on one of the traces, we should be able to see the annotation whose description `isInvoking processLine` and on clicking on it, it should show our attributes
-
-`len` and `use`
+And on clicking on one of the traces, we should be able to see the annotation whose description `isInvoking processLine` and on clicking on it, it should show our attributes `len` and `use`.
 
 ![viewing traces 2](https://cdn-images-1.medium.com/max/1600/1*SEsUxV1GXu-jM8dLQwtVMw.png)
