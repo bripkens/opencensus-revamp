@@ -2,6 +2,7 @@
 title: "Tracing"
 date: 2018-07-16T14:29:21-07:00
 draft: false
+class: "shadowed-image"
 ---
 
 {{% notice note %}}
