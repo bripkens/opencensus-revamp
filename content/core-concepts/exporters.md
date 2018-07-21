@@ -23,14 +23,20 @@ import (
     "go.opencensus.io/stats/view"
 )
 
-exporter, err := prometheus.NewExporter(prometheus.Options{})
-if err != nil {
-    log.Fatal(err)
-}
-view.RegisterExporter(exporter)
+func main() {
+    exporter, err := prometheus.NewExporter(prometheus.Options{Namespace: "demo"})
+    if err != nil {
+        log.Fatal(err)
+    }
+    view.RegisterExporter(exporter)
 
-http.Handle("/metrics", exporter)
-log.Fatal(http.ListenAndServe(":9091", nil))
+    // In a seperate go routine, run the Prometheus metrics scraping handler
+    go func() {
+        http.Handle("/metrics", exporter)
+        log.Fatal(http.ListenAndServe(":9091", nil))
+    }()
+    // ... continue with your code
+}
   {{</highlight>}}
 
   {{<highlight java>}}
