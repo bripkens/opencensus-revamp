@@ -113,18 +113,57 @@ package io.opencensus.quickstart;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
+public class Repl {
+    public static void main(String ...args) {
+        BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+
+        while (true) {
+            try {
+                System.out.print("> ");
+                System.out.flush();
+                String line = stdin.readLine();
+                String processed = processLine(line);
+                System.out.println("< " + processed + "\n");
+            } catch (IOException e) {
+                System.err.println("Exception "+ e);
+            }
+        }
+    }
+
+    private static String processLine(String line) {
+        return line.toUpperCase();
+    }
+}
+{{</highlight>}}
+
+Install required dependencies:
+```bash
+mvn install
+```
+
+#### Getting Started
+Let's first run the application and see what we have.
+```bash
+mvn exec:java -Dexec.mainClass=io.opencensus.quickstart.Repl
+```
+We have ourselves a lower-to-UPPERCASE REPL. You should see something like this:
+![java image 1](https://cdn-images-1.medium.com/max/1600/1*VFN-txsDL6qYkN_UH3VwhA.png)
+
+Now, in preparation of tracing, lets abstract some of the core functionality in `main()` to a suite of helper functions:
+
+{{<highlight java>}}
+package io.opencensus.quickstart;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Repl {
     public static void main(String ...args) {
-        // Step 1. Enable OpenCensus Tracing.
-        try {
-            setupOpenCensusAndStackdriverExporter();
-        } catch (IOException e) {
-            System.err.println("Failed to create and register OpenCensus Stackdriver Trace exporter "+ e);
-            return;
-        }
+        // Step 1. Our OpenCensus initialization will eventually go here
 
         // Step 2. The normal REPL.
         BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
@@ -148,7 +187,7 @@ public class Repl {
         try {
             line = in.readLine();
         } catch (Exception e) {
-            System.err.println("Failde to read line "+ e);
+            System.err.println("Failed to read line "+ e);
         } finally {
             return line;
         }
@@ -161,90 +200,8 @@ public class Repl {
         String processed = processLine(line);
         System.out.println("< " + processed + "\n");
     }
-
-    private static void setupOpenCensusAndStackdriverExporter() throws IOException {
-        // to do
-    }
-
-    // Used for retrieving Google Cloud Project ID
-    private static String envOrAlternative(String key, String ...alternatives) {
-        String value = System.getenv().get(key);
-        if (value != null && value != "")
-            return value;
-
-        // Otherwise now look for the alternatives.
-        for (String alternative : alternatives) {
-            if (alternative != null && alternative != "") {
-                value = alternative;
-                break;
-            }
-        }
-
-        return value;
-    }
 }
 {{</highlight>}}
-
-Install required dependencies:
-```bash
-mvn install
-```
-
-#### Getting Started
-We have just done a lot of copy-pasting. It is time to take a deep breath, go over what we currently have, and feel comfortable before moving on.
-
-Let's first run the application and see what we have.
-```bash
-mvn exec:java -Dexec.mainClass=io.opencensus.quickstart.Repl
-```
-That's right! We have ourselves a lower-to-UPPERCASE REPL. You should see something like this:
-![java image 1](https://cdn-images-1.medium.com/max/1600/1*VFN-txsDL6qYkN_UH3VwhA.png)
-
-Now, let's go over the code in `Repl.java` and become familiar with our starting point.
-
-**1. main()**
-
-First, we are calling a function called `setupOpenCensusAndStackdriverExporter`. That function currently does nothing, and we will populate it later.
-```java
-try {
-    setupOpenCensusAndStackdriverExporter();
-} catch (IOException e) {
-    System.err.println("Failed to create and register OpenCensus Stackdriver Trace exporter "+ e);
-    return;
-}
-```
-
-Then we instantiate a normal REPL:
-```java
-// Step 2. The normal REPL.
-BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
-```
-
-Then we call our method `readEvaluateProcess` that will do the heavy lifting:
-```java
-while (true) {
-    try {
-        readEvaluateProcess(stdin);
-    } catch (IOException e) {
-        System.err.println("Exception "+ e);
-    }
-}
-```
-
-**2. readEvaluateProcess()**
-
-Finally, we get a string with `readLine`, and then transform the string to uppercase with `processLine`.
-```java
-private static void readEvaluateProcess(BufferedReader in) throws IOException {
-    System.out.print("> ");
-    System.out.flush();
-    String line = readLine(in);
-    String processed = processLine(line);
-    System.out.println("< " + processed + "\n");
-}
-```
-
-Presto, we're done! We are ready to enable tracing.
 
 #### Enable Tracing
 
@@ -263,12 +220,6 @@ To enable tracing, we’ll declare the dependencies in your `pom.xml` file:
     <dependency>
         <groupId>io.opencensus</groupId>
         <artifactId>opencensus-impl</artifactId>
-        <version>${opencensus.version}</version>
-    </dependency>
-
-    <dependency>
-        <groupId>io.opencensus</groupId>
-        <artifactId>opencensus-exporter-trace-stackdriver</artifactId>
         <version>${opencensus.version}</version>
     </dependency>
 </dependencies>
@@ -349,14 +300,72 @@ To enable tracing, we’ll declare the dependencies in your `pom.xml` file:
 
 Now add the import statements to your `Repl.java`:
 
-```java
+{{<tabs Snippet All>}}
+{{<highlight java>}}
 import io.opencensus.common.Scope;
 import io.opencensus.trace.Span;
 import io.opencensus.trace.Status;
 import io.opencensus.trace.Tracer;
 import io.opencensus.trace.Tracing;
-```
+{{</highlight>}}
 
+{{<highlight java>}}
+package io.opencensus.quickstart;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
+
+import io.opencensus.common.Scope;
+import io.opencensus.trace.Span;
+import io.opencensus.trace.Status;
+import io.opencensus.trace.Tracer;
+import io.opencensus.trace.Tracing;
+
+public class Repl {
+    public static void main(String ...args) {
+        // Step 1. Our OpenCensus initialization will eventually go here
+
+        // Step 2. The normal REPL.
+        BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+
+        while (true) {
+            try {
+                readEvaluateProcess(stdin);
+            } catch (IOException e) {
+                System.err.println("Exception "+ e);
+            }
+        }
+    }
+
+    private static String processLine(String line) {
+        return line.toUpperCase();
+    }
+
+    private static String readLine(BufferedReader in) {
+        String line = "";
+
+        try {
+            line = in.readLine();
+        } catch (Exception e) {
+            System.err.println("Failed to read line "+ e);
+        } finally {
+            return line;
+        }
+    }
+
+    private static void readEvaluateProcess(BufferedReader in) throws IOException {
+        System.out.print("> ");
+        System.out.flush();
+        String line = readLine(in);
+        String processed = processLine(line);
+        System.out.println("< " + processed + "\n");
+    }
+}
+{{</highlight>}}
+{{</tabs>}}
 
 ##### Instrumentation
 We will begin by creating a private static `Tracer` as a property of our Repl class.
@@ -367,12 +376,14 @@ private static final Tracer TRACER = Tracing.getTracer();
 
 We will be tracing the execution as it flows through `readEvaluateProcess`, `readLine`, and finally `processLine`.
 
+To do this, we will create a [span](http://localhost:1313/core-concepts/tracing/#spans).
+
 You can create a span by inserting the following line in each of the three functions:
 ```java
 Scope ss = TRACER.spanBuilder("repl").startScopedSpan();
 ```
 
-Here is updated state of `Repl.java`:
+Here is our updated state of `Repl.java`:
 
 ```java
 package io.opencensus.quickstart;
@@ -391,13 +402,7 @@ public class Repl {
     private static final Tracer TRACER = Tracing.getTracer();
 
     public static void main(String ...args) {
-        // Step 1. Enable OpenCensus Tracing.
-        try {
-            setupOpenCensusAndStackdriverExporter();
-        } catch (IOException e) {
-            System.err.println("Failed to create and register OpenCensus Stackdriver Trace exporter "+ e);
-            return;
-        }
+        // Step 1. Our OpenCensus initialization will eventually go here
 
         // Step 2. The normal REPL.
         BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
@@ -431,37 +436,6 @@ public class Repl {
             ss.close();
             return line;
         }
-    }
-
-    private static void readEvaluateProcess(BufferedReader in) throws IOException {
-        try (Scope ss = TRACER.spanBuilder("repl").startScopedSpan()) {
-            System.out.print("> ");
-            System.out.flush();
-            String line = readLine(in);
-            String processed = processLine(line);
-            System.out.println("< " + processed + "\n");
-        }
-    }
-
-    private static void setupOpenCensusAndStackdriverExporter() throws IOException {
-        // to do
-    }
-
-    // Used for retrieving Google Cloud Project ID
-    private static String envOrAlternative(String key, String ...alternatives) {
-        String value = System.getenv().get(key);
-        if (value != null && value != "")
-            return value;
-
-        // Otherwise now look for the alternatives.
-        for (String alternative : alternatives) {
-            if (alternative != null && alternative != "") {
-                value = alternative;
-                break;
-            }
-        }
-
-        return value;
     }
 }
 ```
@@ -560,7 +534,9 @@ To turn on Stackdriver Tracing, we’ll need to declare the Stackdriver dependen
 {{</tabs>}}
 
 Now add the import statements to your `Repl.java`:
-```java
+
+{{<tabs Snippet All>}}
+{{<highlight java>}}
 import java.util.HashMap;
 import java.util.Map;
 
@@ -570,13 +546,191 @@ import io.opencensus.trace.samplers.Samplers;
 
 import io.opencensus.exporter.trace.stackdriver.StackdriverTraceConfiguration;
 import io.opencensus.exporter.trace.stackdriver.StackdriverTraceExporter;
-```
+{{</highlight>}}
+
+{{<highlight java>}}
+package io.opencensus.quickstart;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
+
+import io.opencensus.common.Scope;
+import io.opencensus.trace.AttributeValue;
+import io.opencensus.trace.config.TraceConfig;
+import io.opencensus.trace.samplers.Samplers;
+import io.opencensus.trace.Span;
+import io.opencensus.trace.Status;
+import io.opencensus.trace.Tracer;
+import io.opencensus.trace.Tracing;
+
+import io.opencensus.exporter.trace.stackdriver.StackdriverTraceConfiguration;
+import io.opencensus.exporter.trace.stackdriver.StackdriverTraceExporter;
+
+public class Repl {
+    private static final Tracer TRACER = Tracing.getTracer();
+
+    public static void main(String ...args) {
+        // Step 1. Our OpenCensus initialization will eventually go here
+
+        // Step 2. The normal REPL.
+        BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+
+        while (true) {
+            try {
+                readEvaluateProcess(stdin);
+            } catch (IOException e) {
+                System.err.println("Exception "+ e);
+            }
+        }
+    }
+
+    private static String processLine(String line) {
+        try (Scope ss = TRACER.spanBuilder("processLine").startScopedSpan()) {
+            return line.toUpperCase();
+        }
+    }
+
+    private static String readLine(BufferedReader in) {
+        Scope ss = TRACER.spanBuilder("readLine").startScopedSpan();
+
+        String line = "";
+
+        try {
+            line = in.readLine();
+        } catch (Exception e) {
+            Span span = TRACER.getCurrentSpan();
+            span.setStatus(Status.INTERNAL.withDescription(e.toString()));
+        } finally {
+            ss.close();
+            return line;
+        }
+    }
+}
+{{</highlight>}}
+{{</tabs>}}
 
 ##### Export Traces
 
-Let's first setup our `setupOpenCensusAndStackdriverExporter` function:
+Now it is time to implement `Step 1: OpenCensus Initialization`!
 
+We will create a function called `setupOpenCensusAndStackdriverExporter` and call it from our `main` function:
+
+{{<tabs Snippet All>}}
+{{<highlight java>}}
+public static void main(String ...args) {
+    // Step 1. Enable OpenCensus Tracing.
+    try {
+        setupOpenCensusAndStackdriverExporter();
+    } catch (IOException e) {
+        System.err.println("Failed to create and register OpenCensus Stackdriver Trace exporter "+ e);
+        return;
+    }
+
+    //..
+}
+{{</highlight>}}
+
+{{<highlight java>}}
+package io.opencensus.quickstart;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
+
+import io.opencensus.common.Scope;
+import io.opencensus.trace.AttributeValue;
+import io.opencensus.trace.config.TraceConfig;
+import io.opencensus.trace.samplers.Samplers;
+import io.opencensus.trace.Span;
+import io.opencensus.trace.Status;
+import io.opencensus.trace.Tracer;
+import io.opencensus.trace.Tracing;
+
+import io.opencensus.exporter.trace.stackdriver.StackdriverTraceConfiguration;
+import io.opencensus.exporter.trace.stackdriver.StackdriverTraceExporter;
+
+public class Repl {
+    private static final Tracer TRACER = Tracing.getTracer();
+
+    public static void main(String ...args) {
+        // Step 1. Enable OpenCensus Tracing.
+        try {
+            setupOpenCensusAndStackdriverExporter();
+        } catch (IOException e) {
+            System.err.println("Failed to create and register OpenCensus Stackdriver Trace exporter "+ e);
+            return;
+        }
+
+        // Step 2. The normal REPL.
+        BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+
+        while (true) {
+            try {
+                readEvaluateProcess(stdin);
+            } catch (IOException e) {
+                System.err.println("Exception "+ e);
+            }
+        }
+    }
+
+    private static String processLine(String line) {
+        try (Scope ss = TRACER.spanBuilder("processLine").startScopedSpan()) {
+            return line.toUpperCase();
+        }
+    }
+
+    private static String readLine(BufferedReader in) {
+        Scope ss = TRACER.spanBuilder("readLine").startScopedSpan();
+
+        String line = "";
+
+        try {
+            line = in.readLine();
+        } catch (Exception e) {
+            Span span = TRACER.getCurrentSpan();
+            span.setStatus(Status.INTERNAL.withDescription(e.toString()));
+        } finally {
+            ss.close();
+            return line;
+        }
+    }
+}
+{{</highlight>}}
+{{</tabs>}}
+
+We will do three things in our `setupOpenCensusAndStackdriverExporter` function:
+
+1. Set our [sampling rate](http://localhost:1313/core-concepts/tracing/#sampling)
 ```java
+TraceConfig traceConfig = Tracing.getTraceConfig();
+// For demo purposes, lets always sample.
+traceConfig.updateActiveTraceParams(
+        traceConfig.getActiveTraceParams().toBuilder().setSampler(Samplers.alwaysSample()).build());
+```
+
+2. Retrieve our Google Cloud Project ID
+```java
+// Implementation will come later
+String gcpProjectId = envOrAlternative("GCP_PROJECT_ID");
+```
+
+3. Export our Traces to Stackdriver
+```java
+StackdriverTraceExporter.createAndRegister(
+        StackdriverTraceConfiguration.builder()
+        .setProjectId(gcpProjectId)
+        .build());
+```
+
+The function ends up looking like this:
+
+{{<tabs Snippet All>}}
+{{<highlight java>}}
 private static void setupOpenCensusAndStackdriverExporter() throws IOException {
     TraceConfig traceConfig = Tracing.getTraceConfig();
     // For demo purposes, lets always sample.
@@ -590,7 +744,213 @@ private static void setupOpenCensusAndStackdriverExporter() throws IOException {
             .setProjectId(gcpProjectId)
             .build());
 }
-```
+{{</highlight>}}
+
+{{<highlight java>}}
+package io.opencensus.quickstart;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
+
+import io.opencensus.common.Scope;
+import io.opencensus.trace.AttributeValue;
+import io.opencensus.trace.config.TraceConfig;
+import io.opencensus.trace.samplers.Samplers;
+import io.opencensus.trace.Span;
+import io.opencensus.trace.Status;
+import io.opencensus.trace.Tracer;
+import io.opencensus.trace.Tracing;
+
+import io.opencensus.exporter.trace.stackdriver.StackdriverTraceConfiguration;
+import io.opencensus.exporter.trace.stackdriver.StackdriverTraceExporter;
+
+public class Repl {
+    private static final Tracer TRACER = Tracing.getTracer();
+
+    public static void main(String ...args) {
+        // Step 1. Enable OpenCensus Tracing.
+        try {
+            setupOpenCensusAndStackdriverExporter();
+        } catch (IOException e) {
+            System.err.println("Failed to create and register OpenCensus Stackdriver Trace exporter "+ e);
+            return;
+        }
+
+        // Step 2. The normal REPL.
+        BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+
+        while (true) {
+            try {
+                readEvaluateProcess(stdin);
+            } catch (IOException e) {
+                System.err.println("Exception "+ e);
+            }
+        }
+    }
+
+    private static String processLine(String line) {
+        try (Scope ss = TRACER.spanBuilder("processLine").startScopedSpan()) {
+            return line.toUpperCase();
+        }
+    }
+
+    private static String readLine(BufferedReader in) {
+        Scope ss = TRACER.spanBuilder("readLine").startScopedSpan();
+
+        String line = "";
+
+        try {
+            line = in.readLine();
+        } catch (Exception e) {
+            Span span = TRACER.getCurrentSpan();
+            span.setStatus(Status.INTERNAL.withDescription(e.toString()));
+        } finally {
+            ss.close();
+            return line;
+        }
+    }
+
+    private static void setupOpenCensusAndStackdriverExporter() throws IOException {
+        TraceConfig traceConfig = Tracing.getTraceConfig();
+        // For demo purposes, lets always sample.
+        traceConfig.updateActiveTraceParams(
+                traceConfig.getActiveTraceParams().toBuilder().setSampler(Samplers.alwaysSample()).build());
+
+        String gcpProjectId = envOrAlternative("GCP_PROJECT_ID");
+
+        StackdriverTraceExporter.createAndRegister(
+                StackdriverTraceConfiguration.builder()
+                .setProjectId(gcpProjectId)
+                .build());
+    }
+}
+{{</highlight>}}
+{{</tabs>}}
+
+Now we will handle our implementation of `envOrAlternative`:
+
+{{<tabs Snippet All>}}
+{{<highlight java>}}
+private static String envOrAlternative(String key, String ...alternatives) {
+  String value = System.getenv().get(key);
+  if (value != null && value != "")
+  return value;
+
+  // Otherwise now look for the alternatives.
+  for (String alternative : alternatives) {
+    if (alternative != null && alternative != "") {
+      value = alternative;
+      break;
+    }
+  }
+
+  return value;
+}
+{{</highlight>}}
+
+{{<highlight java>}}
+package io.opencensus.quickstart;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
+
+import io.opencensus.common.Scope;
+import io.opencensus.trace.AttributeValue;
+import io.opencensus.trace.config.TraceConfig;
+import io.opencensus.trace.samplers.Samplers;
+import io.opencensus.trace.Span;
+import io.opencensus.trace.Status;
+import io.opencensus.trace.Tracer;
+import io.opencensus.trace.Tracing;
+
+import io.opencensus.exporter.trace.stackdriver.StackdriverTraceConfiguration;
+import io.opencensus.exporter.trace.stackdriver.StackdriverTraceExporter;
+
+public class Repl {
+    private static final Tracer TRACER = Tracing.getTracer();
+
+    public static void main(String ...args) {
+        // Step 1. Enable OpenCensus Tracing.
+        try {
+            setupOpenCensusAndStackdriverExporter();
+        } catch (IOException e) {
+            System.err.println("Failed to create and register OpenCensus Stackdriver Trace exporter "+ e);
+            return;
+        }
+
+        // Step 2. The normal REPL.
+        BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+
+        while (true) {
+            try {
+                readEvaluateProcess(stdin);
+            } catch (IOException e) {
+                System.err.println("Exception "+ e);
+            }
+        }
+    }
+
+    private static String processLine(String line) {
+        try (Scope ss = TRACER.spanBuilder("processLine").startScopedSpan()) {
+            return line.toUpperCase();
+        }
+    }
+
+    private static String readLine(BufferedReader in) {
+        Scope ss = TRACER.spanBuilder("readLine").startScopedSpan();
+
+        String line = "";
+
+        try {
+            line = in.readLine();
+        } catch (Exception e) {
+            Span span = TRACER.getCurrentSpan();
+            span.setStatus(Status.INTERNAL.withDescription(e.toString()));
+        } finally {
+            ss.close();
+            return line;
+        }
+    }
+
+    private static void setupOpenCensusAndStackdriverExporter() throws IOException {
+        TraceConfig traceConfig = Tracing.getTraceConfig();
+        // For demo purposes, lets always sample.
+        traceConfig.updateActiveTraceParams(
+                traceConfig.getActiveTraceParams().toBuilder().setSampler(Samplers.alwaysSample()).build());
+
+        String gcpProjectId = envOrAlternative("GCP_PROJECT_ID");
+
+        StackdriverTraceExporter.createAndRegister(
+                StackdriverTraceConfiguration.builder()
+                .setProjectId(gcpProjectId)
+                .build());
+    }
+
+    private static String envOrAlternative(String key, String ...alternatives) {
+      String value = System.getenv().get(key);
+      if (value != null && value != "")
+      return value;
+
+      // Otherwise now look for the alternatives.
+      for (String alternative : alternatives) {
+        if (alternative != null && alternative != "") {
+          value = alternative;
+          break;
+        }
+      }
+
+      return value;
+    }
+}
+{{</highlight>}}
+{{</tabs>}}
+
 
 ##### Create Annotations
 When looking at our traces on a backend (such as Stackdriver), we can add metadata to our traces to increase our post-mortem insight.
