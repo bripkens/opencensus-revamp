@@ -23,8 +23,6 @@ Stats collection requires two steps:
 * Definition of measures and recording of data points.
 * Definition and registration of views to aggregate the recorded values.
 
----
-
 #### Measures  
 
 A measure represents a metric type to be recorded. For example, request latency
@@ -42,7 +40,6 @@ RequestLatecy = {
   "microsecs",
 }
 ```
----
 
 #### Recording
 Measurement is a data point to be collected for a measure. For example, for a latency (ms) measure, 100 is a measurement that represents a 100 ms latency event. Users collect data points on the existing measures with the current context. Tags from the current context are recorded with the measurements if they are any.  
@@ -52,8 +49,6 @@ Recorded measurements are dropped if user is not aggregating them via views. Use
 Libraries can record measurements and provide measures,
 and end-users can later decide on which measures
 they want to collect.  
-
----
 
 #### Views
 
@@ -72,8 +67,6 @@ Following aggregation methods are supported:
 Users can dynamically create and delete views at runtime. Libraries may
 export their own views and claim the view names by registering them.  
 
----
-
 #### Sampling
 
 Stats are NOT sampled to be able to represent uncommon
@@ -85,8 +78,6 @@ On the other hand, exporting every individual measurement would
 be very expensive in terms of network traffic. This is why stats
 collection aggregates data in the process and exports only the
 aggregated data.
-
----
 
 #### Exporting
 

@@ -2,6 +2,7 @@
 title: "Tracing"
 date: 2018-07-16T14:28:37-07:00
 draft: false
+class: "shadow-images"
 ---
 
 
@@ -11,9 +12,7 @@ as it is handled by other services that make up an application.
 Each unit work is called a span in a trace. Spans include metadata about the work,
 including the time spent in the step (latency) and status.
 You can use tracing to debug errors and
-latency issues of your application.  
-
----
+latency issues of your application.
 
 #### Spans
 
@@ -106,8 +105,6 @@ users to filter large volume tracing data. For example, you can
 filter the traces by HTTP status code or availability zone by
 using the example attributes above.
 
----
-
 #### Sampling
 
 Trace data is often very large in size and is expensive to collect.
@@ -127,8 +124,6 @@ There are two ways to set samplers:
   code. For example, a low throughput background service
   may use a higher sampling rate than a high-load RPC
   server.
-
----
 
 #### Exporting
 

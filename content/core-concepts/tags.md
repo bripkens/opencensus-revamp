@@ -2,6 +2,7 @@
 title: "Tags"
 date: 2018-07-18T10:39:08-07:00
 draft: false
+class: "shadow-images"
 ---
 
 
