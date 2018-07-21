@@ -32,3 +32,37 @@ div.tab-container ul.tabs {
 div.tab-container ul.tabs li.tab.active a {
   background-color: rgba(246,178,181,0.2);
 }
+
+h1, h2, h3, h4 {
+  text-transform: none;
+}
+
+h4, h5 {
+  border-bottom: 1px solid #efefef;
+  margin-top: 40px;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+}
+
+p, ol, li, a {
+  color: #555;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+}
+
+article section.page img {
+  -webkit-box-shadow: 0 0 13px #ddd;
+  -moz-box-shadow: 0 0 13px #ddd;
+  -o-box-shadow: 0 0 13px #ddd;
+  -ms-box-shadow: 0 0 13px #ddd;
+  box-shadow: 0 0 13px #ddd;
+  border: 2px solid #ddd;
+}
+
+article section.page code,
+article section.page code * {
+    font-family: "RobotoMono", monospace;
+    font-size: 0.9em;
+}
+
+article section.page code * {
+  line-height: 0.9em;
+}
