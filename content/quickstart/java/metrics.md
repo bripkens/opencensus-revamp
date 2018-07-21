@@ -112,7 +112,7 @@ Put this in your newly generated `pom.xml` file:
 </project>
 ```
 
-Put this in `/src/main/java/io/opencensus/quickstart/Repl.java`:
+Put this in `src/main/java/io/opencensus/quickstart/Repl.java`:
 
 ```java
 package io.opencensus.quickstart;
@@ -153,19 +153,17 @@ mvn install
 By the end of this tutorial, we will do these four things to obtain metrics using OpenCensus:
 
 1. Create quantifiable metrics (numerical) that we will record
-2. Create meta-data called [tags](/core-concepts/tags) (text) that we will associate with our metrics
+2. Create [tags](/core-concepts/tags) that we will associate with our metrics
 3. Organize our metrics, similar to a writing a report, in to a `View`
 4. Export our views to a backend (Stackdriver in this case)
 
 #### Getting Started
-We will be creating a "read-evaluate-print" (REPL) function. Let's collect some metrics to observe the work that is going on this code, such as:
+We will be creating a simple "read-evaluate-print" (REPL) app. Let's collect some metrics to observe the work that is going on this code, such as:
 
 - Latency per processing loop
 - Number of lines read
 - Number of errors
 - Line lengths
-- Number of spaces
-- Number of bytes read
 
 Let's first run the application and see what we have.
 ```bash
@@ -561,14 +559,14 @@ public class Repl {
 {{</highlight>}}
 {{</tabs>}}
 
-We will later use this tag, called KeyMethod, to arbitrarily record what method is being invoked. In our scenario, we will only use it to record that "repl" is calling our data.
+We will later use this tag, called KeyMethod, to record what method is being invoked. In our scenario, we will only use it to record that "repl" is calling our data.
 
 Again, this is arbitrary and purely up the user. For example, if we wanted to track what operating system a user is using, we could do so like this:
 ```java
-private static final TagKey OsKey = TagKey.create("operationSystem");
+private static final TagKey OSKey = TagKey.create("operating_system");
 ```
 
-Later, when we use OsKey, we will be given an opportunity to enter values such as "windows" or "mac".
+Later, when we use OSKey, we will be given an opportunity to enter values such as "windows" or "mac".
 
 We will now create helper functions to assist us with recording Tagged Stats.
 

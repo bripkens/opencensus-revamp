@@ -50,7 +50,7 @@ Stackdriver exporter: `go get contrib.go.opencensus.io/exporter/stackdriver`
 By the end of this tutorial, we will do these four things to obtain metrics using OpenCensus:
 
 1. Create quantifiable metrics (numerical) that we will record
-2. Create meta-data called [tags](/core-concepts/tags) (text) that we will associate with our metrics
+2. Create [tags](/core-concepts/tags) that we will associate with our metrics
 3. Organize our metrics, similar to a writing a report, in to a `View`
 4. Export our views to a backend (Stackdriver in this case)
 
@@ -61,14 +61,12 @@ By the end of this tutorial, we will do these four things to obtain metrics usin
 Unsure how to write and execute Go code? [Click here](https://golang.org/doc/code.html).
 {{% /notice %}}
 
-We will be creating a "read-evaluate-print" (REPL) function. Let's collect some metrics to observe the work that is going on this code, such as:
+We will be a simple "read-evaluate-print" (REPL) app. In there we'll collect some metrics to observe the work that is going on this code, such as:
 
 - Latency per processing loop
 - Number of lines read
 - Number of errors
 - Line lengths
-- Number of spaces
-- Number of bytes read
 
 First, create a file called `repl.go`.
 ```bash
@@ -397,11 +395,11 @@ func processLine(in []byte) (out []byte, err error) {
 {{</highlight>}}
 {{</tabs>}}
 
-We will later use this tag, called KeyMethod, to arbitrarily record what method is being invoked. In our scenario, we will only use it to record that "repl" is calling our data.
+We will later use this tag, called KeyMethod, to record what method is being invoked. In our scenario, we will only use it to record that "repl" is calling our data.
 
 Again, this is arbitrary and purely up the user. For example, if we wanted to track what operating system a user is using, we could do so like this:
 ```go
-osKey, _ := tag.NewKey("operatingSystem")
+osKey, _ := tag.NewKey("operating_system")
 ```
 
 Later, when we use osKey, we will be given an opportunity to enter values such as "windows" or "mac".

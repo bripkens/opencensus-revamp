@@ -105,7 +105,7 @@ Put this in your newly generated `pom.xml` file:
 </project>
 ```
 
-Put this in `/src/main/java/io/opencensus/quickstart/Repl.java`:
+Put this in `src/main/java/io/opencensus/quickstart/Repl.java`:
 
 {{<highlight java>}}
 package io.opencensus.quickstart;

@@ -8,7 +8,7 @@ id:                stackdriver
 ## Overview of the tutorial
 Duration: 0:01
 
-This tutorial shows you how to setup and configure Google Stackdriver.
+This tutorial shows you how to setup and configure Google Stackdriver Tracing and Metrics.
 
 Requirements:
 
