@@ -11,11 +11,11 @@ The core functionality of OpenCensus is to collect traces and metrics from your 
 
 After [instrumenting](https://en.wikipedia.org/wiki/Instrumentation_(computer_programming)#Output) your code with OpenCensus, you will equip yourself with the ability to optimize the speed of your services, understand exactly how a request travels between your services, gather any useful metrics about your entire architecture, and more.
 
-{{% notice note %}}
-Already familiar with distributed metric and tracing systems? [Click here](https://opencensus.io/docs/) for a full overview of our API to get started.
-{{% /notice %}}
-
 {{<button href="/quickstart" class="btn-info">}}Visit the Quickstart guide to begin{{</button>}}
+
+{{% notice note %}}
+Already familiar with OpenCensus? [Click here](https://opencensus.io/docs/) for a full overview of our API to get started.
+{{% /notice %}}
 
 ## Why OpenCensus?
 
