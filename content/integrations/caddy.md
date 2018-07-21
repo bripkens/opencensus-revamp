@@ -2,6 +2,7 @@
 title: "Caddy"
 date: 2018-07-16T14:42:17-07:00
 draft: false
+class: "integration-page"
 ---
 
 ![caddy logo](/img/caddyserver-logo.png)
@@ -80,7 +81,7 @@ git add orijtech git@github.com:orijtech/caddy.git && git fetch orijtech && git 
 
 ##### Syntax
 
-```
+```xml
 observability   := SamplerRate;Exporters
 SamplerRate     := float64 value
 Exporters       := [ExporterConfig](,ExporterConfig)?

@@ -71,3 +71,17 @@ article section.page code * {
 article section.page code * {
   line-height: 0.9em;
 }
+
+article section.page.integration-page img:first-child {
+  max-width: 500px;
+  margin: 0 0 60px 0;
+}
+
+table td {
+  overflow: scroll;
+}
+
+table td code {
+  white-space: nowrap;
+  overflow: scroll;
+}
