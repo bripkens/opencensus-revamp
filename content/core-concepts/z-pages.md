@@ -1,29 +1,38 @@
 ---
-title: "Z Pages"
+title: "zPages"
 date: 2018-07-16T14:28:48-07:00
 draft: false
 ---
 
 OpenCensus provides in-process web pages that displays
-collected data from the process. These pages are called z-pages
+collected data from the process. These pages are called zPages
 and they are useful to see collected data from a specific process
 without having to depend on any metric collection or
 distributed tracing backend.
 
-Z-Pages can be useful during the development time or when
+zPages can be useful during the development time or when
 the process to be inspected is known in production.
-Z-Pages can also be used to debug [exporter](/core-concepts/exporters) issues.
+zPages can also be used to debug [exporter](/core-concepts/exporters) issues.
 
-In order to serve Z-pages, register their handlers and
+In order to serve zPages, register their handlers and
 start a web server. Below, there is an example how to
 serve these pages from `127.0.0.1:7777/debug`.
 
 {{<tabs Go Java>}}
   {{<highlight go>}}
-import "go.opencensus.io/zpages"
+import (
+    "log"
+    "net/http"
 
-zpages.Handle(nil, "/debug")
-log.Fatal(http.ListenAndServe("127.0.0.1:7777", nil))
+    "go.opencensus.io/zpages"
+)
+
+func main() {
+    // Using the default serve mux, but you can create your own
+    mux := http.DefaultServeMux
+    zpages.Handle(mux, "/debug")
+    log.Fatal(http.ListenAndServe("127.0.0.1:7777", mux))
+}
   {{</highlight>}}
 
   {{<highlight java>}}
@@ -42,10 +51,9 @@ from the libraries:
 
 #### /rpcz
 
-Rpcz are available at [/rpcz](http://127.0.0.1:7777/debug/rpcz). This page serves
-stats about sent and recieved RPCs.
+/rpcz serves stats about sent and received RPCs. For example at [/rpcz](http://127.0.0.1:7777/debug/rpcz)
 
-Available stats:
+Available stats include:
 
 * Number of RPCs made per minute, hour and in total.
 * Average latency in the last minute, hour and since the process started.
@@ -56,9 +64,8 @@ Available stats:
 
 #### /tracez
 
-Tracez are available at [/tracez](http://127.0.0.1:7777/debug/tracez). This page
-serves details about the trace spans collected
-in the process. It provides several sample spans
+[/tracez](http://127.0.0.1:7777/debug/tracez) serves details about
+the trace spans collected in the process. It provides several sample spans
 per latency bucket and sample errored spans.
 
 An example screenshot from this page is below:
