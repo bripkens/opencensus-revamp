@@ -7,7 +7,7 @@ class: "integration-page"
 
 #### Resources
 
-* [ocsql](https://github.com/basvanbeek/ocsql)
+* [ocsql](https://github.com/basvanbeek/ocsql): A database wrapper for SQL in Go
 
 #### Tutorials
 

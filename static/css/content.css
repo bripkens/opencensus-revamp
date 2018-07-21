@@ -73,8 +73,9 @@ article section.page code * {
 }
 
 article section.page.integration-page img:first-child {
+  width: 100%;
   max-width: 500px;
-  margin: 0 0 60px 0;
+  margin: 0 auto;
 }
 
 table td {
