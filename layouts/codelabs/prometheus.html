@@ -16,17 +16,17 @@
       background: var(--google-codelab-background, #F8F9FA);
     }
   </style>
-  
+
 </head>
 <body unresolved class="fullbleed">
 
   <google-codelab title="Setup and Configure Prometheus"
                   environment="web"
                   feedback-link="">
-    
+
       <google-codelab-step label="Overview of the tutorial" duration="1">
         <p>This tutorial shows you how to setup and configure Prometheus</p>
-<p><img src="img/452ecf341cd4cb4d.png"></p>
+<p><img src="/img/prometheus-logo.png"></p>
 <p>Prometheus is a monitoring system that collects metrics from systems, by scraping exposed endpoints at<br>a regular interval. It evaluates rule expressions and displays results. It can also trigger alerts if<br>alert conditions are met.</p>
 <p>Requirements:</p>
 <ul>
@@ -35,14 +35,14 @@
 
 
       </google-codelab-step>
-    
+
       <google-codelab-step label="Configure Prometheus" duration="1">
         <p>Prometheus Monitoring requires a system configuration usually in the form a &#34;.yaml&#34; file. For example, here is<br>a sample &#34;prometheus.yaml&#34; file to scrape from our servers running at <code>localhost:9888</code>, <code>localhost:9988</code> and <code>localhost:9989</code></p>
 <pre><code>global:
   scrape_interval: 10s
 
   external_labels:
-    monitor: &#39;media_search&#39; 
+    monitor: &#39;media_search&#39;
 
 scrape_configs:
   - job_name: &#39;media_search&#39;
@@ -55,7 +55,7 @@ scrape_configs:
 
 
       </google-codelab-step>
-    
+
       <google-codelab-step label="Starting Prometheus" duration="0">
         <p>Having successfully downloaded Prometheus and setup your config.yaml file, you should now be able to run</p>
 <pre><code>prometheus --config.file=config.yaml
@@ -63,13 +63,13 @@ scrape_configs:
 
 
       </google-codelab-step>
-    
+
       <google-codelab-step label="Viewing Prometheus output" duration="0">
         <p>You should now be able to navigate to <a href="http://localhost:9090/" target="_blank">http://localhost:9090/</a></p>
 
 
       </google-codelab-step>
-    
+
   </google-codelab>
 
   <script>

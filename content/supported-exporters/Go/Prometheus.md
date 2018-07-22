@@ -3,6 +3,7 @@ title: "Prometheus (Stats)"
 date: 2018-07-21T14:27:35-07:00
 draft: false
 weight: 3
+class: "resized-logo"
 ---
 
 ![](https://opencensus.io/img/prometheus_logo.svg)

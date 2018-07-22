@@ -3,9 +3,10 @@ title: "Zipkin (Tracing)"
 date: 2018-07-21T14:27:35-07:00
 draft: false
 weight: 3
+class: "resized-logo"
 ---
 
-![](https://zipkin.io/public/img/zipkin-logo-200x119.jpg)
+![](/img/zipkin-logo.jpg)
 
 {{% notice note %}}
 This guide makes use of Zipkin for visualizing your data. For assistance setting up Zipkin, [Click here](/codelabs/zipkin) for a guided codelab.

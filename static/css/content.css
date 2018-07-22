@@ -82,7 +82,8 @@ article section.page code * {
   line-height: 0.9em;
 }
 
-article section.page.integration-page img:first-child {
+article section.page.integration-page img:first-child,
+article section.page.resized-logo img:first-child {
   width: 100%;
   max-width: 500px;
   margin: 0 auto;

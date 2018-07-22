@@ -3,6 +3,7 @@ title: "DataDog (Stats and Tracing)"
 date: 2018-07-21T14:27:35-07:00
 draft: false
 weight: 3
+class: "resized-logo"
 ---
 
 ![](https://datadog-prod.imgix.net/img/press-logo-v-purpleb.png)
@@ -41,22 +42,22 @@ and then to add stats, tracing and then collectively
 package main
 
 import (
-	"log"
+  "log"
 
-        "github.com/DataDog/opencensus-go-exporter-datadog"
-	"go.opencensus.io/stats/view"
+  "github.com/DataDog/opencensus-go-exporter-datadog"
+  "go.opencensus.io/stats/view"
 )
 
 func main() {
-        dd, err := datadog.NewExporter(datadog.Options{})
-        if err != nil {
-                log.Fatalf("Failed to create the DataDog exporter: %v", err)
-        }
-	// It is imperative to invoke flush before your main function exits
-	defer dd.Stop()
+  dd, err := datadog.NewExporter(datadog.Options{})
+  if err != nil {
+    log.Fatalf("Failed to create the DataDog exporter: %v", err)
+  }
+  // It is imperative to invoke flush before your main function exits
+  defer dd.Stop()
 
-	// Register it as a metrics exporter
-	view.RegisterExporter(dd)
+  // Register it as a metrics exporter
+  view.RegisterExporter(dd)
 }
 {{</highlight>}}
 
@@ -66,20 +67,20 @@ package main
 import (
 	"log"
 
-        "github.com/DataDog/opencensus-go-exporter-datadog"
-	"go.opencensus.io/trace"
+  "github.com/DataDog/opencensus-go-exporter-datadog"
+  "go.opencensus.io/trace"
 )
 
 func main() {
-        dd, err := datadog.NewExporter(datadog.Options{})
-        if err != nil {
-                log.Fatalf("Failed to create the DataDog exporter: %v", err)
-        }
-	// It is imperative to invoke flush before your main function exits
-	defer dd.Stop()
+  dd, err := datadog.NewExporter(datadog.Options{})
+  if err != nil {
+    log.Fatalf("Failed to create the DataDog exporter: %v", err)
+  }
+  // It is imperative to invoke flush before your main function exits
+  defer dd.Stop()
 
-	// Register it as a metrics exporter
-	trace.RegisterExporter(dd)
+  // Register it as a metrics exporter
+  trace.RegisterExporter(dd)
 }
 {{</highlight>}}
 
@@ -87,26 +88,26 @@ func main() {
 package main
 
 import (
-	"log"
+  "log"
 
-        "github.com/DataDog/opencensus-go-exporter-datadog"
-	"go.opencensus.io/stats/view"
-	"go.opencensus.io/trace"
+  "github.com/DataDog/opencensus-go-exporter-datadog"
+  "go.opencensus.io/stats/view"
+  "go.opencensus.io/trace"
 )
 
 func main() {
-        dd, err := datadog.NewExporter(datadog.Options{})
-        if err != nil {
-                log.Fatalf("Failed to create the DataDog exporter: %v", err)
-        }
-	// It is imperative to invoke flush before your main function exits
-	defer dd.Stop()
+  dd, err := datadog.NewExporter(datadog.Options{})
+  if err != nil {
+    log.Fatalf("Failed to create the DataDog exporter: %v", err)
+  }
+  // It is imperative to invoke flush before your main function exits
+  defer dd.Stop()
 
-	// Register it as a metrics exporter
-	view.RegisterExporter(sd)
+  // Register it as a metrics exporter
+  view.RegisterExporter(sd)
 
-	// Register it as a metrics exporter
-	trace.RegisterExporter(dd)
+  // Register it as a metrics exporter
+  trace.RegisterExporter(dd)
 }
 {{</highlight>}}
 {{</tabs>}}
