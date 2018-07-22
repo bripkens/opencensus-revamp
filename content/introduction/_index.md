@@ -5,6 +5,8 @@ draft: false
 weight: 1
 ---
 
+![](/images/opencensus-logo.png)
+
 In this section we will walk through what OpenCensus is, what problems it solves, and how it can help your project.
 
 {{% children %}}
