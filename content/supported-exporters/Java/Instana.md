@@ -46,7 +46,7 @@ To create the trace exporter, you'll need to:
             <artifactId>opencensus-impl</artifactId>
             <version>${opencensus.version}</version>
         </dependency>
-        
+
         <dependency>
             <groupId>io.opencensus</groupId>
             <artifactId>opencensus-exporter-trace-instana</artifactId>

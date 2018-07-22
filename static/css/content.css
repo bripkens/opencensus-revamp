@@ -123,5 +123,10 @@ article section.page span.brand img {
   display: inline;
   margin: 0;
   text-align: left;
-  max-width: 16px;
+  max-width: 1em;
+}
+
+article section.page.no-top-border-header h4,
+article section.page.no-top-border-header h5 {
+  border-top: none;
 }
