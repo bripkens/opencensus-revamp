@@ -130,3 +130,11 @@ article section.page.no-top-border-header h4,
 article section.page.no-top-border-header h5 {
   border-top: none;
 }
+
+div.notices.note {
+  display: inline-block;
+}
+
+p {
+  max-width: 600px;
+}
