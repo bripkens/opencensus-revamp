@@ -118,3 +118,10 @@ article section.page .quickstart-list-header h5 {
   display: inline;
   border-top: none;
 }
+
+article section.page span.brand img {
+  display: inline;
+  margin: 0;
+  text-align: left;
+  max-width: 16px;
+}
