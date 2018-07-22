@@ -974,7 +974,7 @@ span.addAnnotation("Invoking processLine", attributes);
 The final state of `Repl.java` should be this:
 
 ```java
-ackage io.opencensus.quickstart;
+package io.opencensus.quickstart;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -13,5 +13,5 @@ OpenCensus Go provides support for various exporters like:
 * [Google Stackdriver Tracing and Monitoring](/supported-exporters/go/stackdriver/)
 * [DataDog APM and Tracing](/supported-exporters/go/datadog/)
 * [Prometheus Monitoring](/supported-exporters/go/prometheus/)
-* [Zipkin](/supported-exporters/zipkin)
-* [Jaeger](/supported-exporters/jaeger)
+* [Zipkin](/supported-exporters/go/zipkin)
+* [Jaeger](/supported-exporters/go/jaeger)
