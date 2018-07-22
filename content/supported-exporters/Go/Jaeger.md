@@ -3,6 +3,7 @@ title: "Jaeger (Tracing)"
 date: 2018-07-21T14:27:35-07:00
 draft: false
 weight: 3
+class: "resized-logo"
 ---
 
 ![](https://www.jaegertracing.io/img/jaeger-logo.png)

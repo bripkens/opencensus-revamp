@@ -16,17 +16,17 @@
       background: var(--google-codelab-background, #F8F9FA);
     }
   </style>
-  
+
 </head>
 <body unresolved class="fullbleed">
 
   <google-codelab title="Setup and Configure Jaeger"
                   environment="web"
                   feedback-link="">
-    
+
       <google-codelab-step label="Overview of the tutorial" duration="1">
         <p>This tutorial shows you how to setup and configure Jaeger</p>
-<p><img src="img/a74b22a1a2749ae7.png"></p>
+<p><img src="/img/a74b22a1a2749ae7.png"></p>
 <p>Jaeger, inspired by Dapper and OpenZipkin, is a distributed tracing system released as open source by Uber Technologies. It is used for monitoring and troubleshooting microservices-based distributed systems, including:</p>
 <p>Distributed context propagation<br>Distributed transaction monitoring<br>Root cause analysis<br>Service dependency analysis<br>Performance / latency optimization</p>
 <p>Requirements:</p>
@@ -36,7 +36,7 @@
 
 
       </google-codelab-step>
-    
+
       <google-codelab-step label="Downloading the Jaeger Docker image" duration="1">
         <p>We&#39;ll get the Jaeger Docker image from https://hub.docker.com/u/jaegertracing/</p>
 <p>by</p>
@@ -45,7 +45,7 @@
 
 
       </google-codelab-step>
-    
+
       <google-codelab-step label="Starting Jaeger" duration="0">
         <pre><code>docker run -d --name jaeger \
   -e COLLECTOR_ZIPKIN_HTTP_PORT=9411 \
@@ -62,7 +62,7 @@
 
 
       </google-codelab-step>
-    
+
   </google-codelab>
 
   <script>

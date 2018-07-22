@@ -3,6 +3,7 @@ title: "AWS X-Ray (Tracing)"
 date: 2018-07-21T14:27:35-07:00
 draft: false
 weight: 3
+class: "resized-logo"
 ---
 
 ![](https://d1.awsstatic.com/product-marketing/X-Ray/x-ray_web-app_diagram_light.21c38e4500dca09b3c8ca4cf87f896f7bbfb8a3b.png)
