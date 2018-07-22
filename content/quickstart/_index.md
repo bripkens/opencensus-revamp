@@ -5,20 +5,10 @@ draft: false
 weight: 2
 ---
 
-Congratulations! You are one step away from learning how to gain clarity with your distributed architecture by using OpenCensus.
+By completing this course, you will learn how to:
 
-There are **two** different quickstarts, and each are geared towards solving a different problem.
+* Collect [metrics](/core-concepts/metrics) from your services
+* [Trace](/core-concepts/tracing) a request as it passes through your services
+* [Export](/core-concepts/exporters) your data to one of our [supported backends](/supported-exporters/)
 
-Do you want to...
-
-Use **Metrics** to gain a big picture understanding of your architecture by recording important information such as service latency, payload size, open file descriptors, and more?
-
-Or do you want to...
-
-Use **Tracing** to see how a request travels throughout your microservices and arm yourself with the tools to perform root cause analysis and latency optimization?
-
-#### Let's Go!
-
-{{% children depth="2" %}}
-
-When you are done with the quickstarts, you will know how to install, configure, and export your data to a backend and begin visualizing your information!
+{{<quickstart-list>}}
