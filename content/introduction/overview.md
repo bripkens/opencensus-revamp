@@ -3,6 +3,7 @@ title: "Overview"
 date: 2018-07-16T14:28:09-07:00
 draft: false
 weight: 1
+class: "resized-logo"
 ---
 
 OpenCensus gives you the tools to track a request as it travels through each of your services, and it helps you gather any metrics that you need about your services.
@@ -27,3 +28,5 @@ Gain total situation-clarity in your distributed services architecture. When you
 
 ##### Optimize Service Latency
 Become empowered to optimize every component in your distributed services by gaining key insights in to the latency and performance of every microservice and data storage you manage.
+
+![](/images/opencensus-supported-languages.png)
