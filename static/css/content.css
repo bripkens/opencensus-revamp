@@ -97,3 +97,7 @@ table td code {
   white-space: nowrap;
   overflow: scroll;
 }
+
+article section.page.no-pagination .chevrons {
+  display: none;
+}
