@@ -23,7 +23,9 @@ and a variety of common application components including Cassandra, Nginx, Apach
 Stackdriver ingests that data and generates insights via dashboards, charts, and alerts. Stackdriver alerting helps you collaborate by
 integrating with Slack, PagerDuty, HipChat, Campfire, and more.
 
-OpenCensus Java has support for this exporter available through package [io.opencensus.exporter.stats.stackdriver](https://www.javadoc.io/doc/io.opencensus/opencensus-exporter-stats-stackdriver)
+OpenCensus Java has support for this exporter available through packages:
+* Stats [io.opencensus.exporter.stats.stackdriver](https://www.javadoc.io/doc/io.opencensus/opencensus-exporter-stats-stackdriver)
+* Trace [io.opencensus.exporter.trace.stackdriver](https://www.javadoc.io/doc/io.opencensus/opencensus-exporter-trace-stackdriver)
 
 #### Table of contents
 - [Creating the exporters](#creating-the-exporters)
