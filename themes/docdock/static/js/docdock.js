@@ -19,7 +19,7 @@ var getUrlParameter = function getUrlParameter(sPageURL) {
 jQuery(document).ready(function () {
 
     // Execute actions on images generated from Markdown pages
-    var images = $("article img").not(".inline");
+    var images = $("article .lightbox img").not(".inline");
     // Wrap image inside a featherlight (to get a full size view in a popup)
     images.wrap(function () {
         var image = $(this);
