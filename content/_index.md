@@ -30,4 +30,5 @@ them to a plethora of backends like:
 * Prometheus
 
 #### Partners & Contributors
-[Please put partners and contributors here]
+
+{{<partners>}}
