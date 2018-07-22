@@ -6,7 +6,7 @@ weight: 3
 class: "resized-logo"
 ---
 
-![](https://opencensus.io/img/prometheus_logo.svg)
+![](/img/prometheus-logo.png)
 
 {{% notice note %}}
 This guide makes use of Prometheus for receiving and visualizing your data. For assistance setting up Prometheus, [Click here](/codelabs/prometheus) for a guided codelab.
