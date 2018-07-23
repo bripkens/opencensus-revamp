@@ -138,3 +138,21 @@ div.notices.note {
 p {
   max-width: 600px;
 }
+
+article section.page.no-search div.searchbox {
+  display: none;
+}
+
+.title-card {
+  display: flex;
+  margin-bottom: 50px;
+}
+
+article section.page div.title-card img {
+  width: 100px;
+  margin: 10px 0 0 0;
+}
+
+article section.page div.title-card h2 {
+  margin: 0 0 10px 0;
+}

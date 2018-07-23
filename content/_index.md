@@ -2,9 +2,12 @@
 title: ""
 date: 2018-07-19T09:58:45-07:00
 draft: false
-class: "no-pagination no-top-border-header"
+class: "no-pagination no-top-border-header no-search"
 ---
-{{<what-is-opencensus>}}
+
+{{<title-card>}}
+
+##### What is OpenCensus?
 
 {{<title>}} is a vendor-agnostic single distribution of libraries to provide **metrics** collection and **tracing** for your microservices and monoliths alike.
 
