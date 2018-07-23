@@ -14,5 +14,5 @@ For full API references, please take a look at:
 
 Resource|Link
 ---|---
-JavaDoc|https://godoc.org/go.opencensus.io
+GoDoc|https://godoc.org/go.opencensus.io
 Github repository|https://github.com/census-instrumentation/opencensus-go

@@ -26,7 +26,7 @@ This guide makes use of Stackdriver for visualizing your data. For assistance se
 In this quickstart, we’ll learn gleam insights into a segment of code and learn how to:
 
 1. Trace the code using [OpenCensus Tracing](/core-concepts/tracing)
-2. Register and enable an exporter for a [backend](http://localhost:1313/core-concepts/exporters/#supported-backends) of our choice
+2. Register and enable an exporter for a [backend](/core-concepts/exporters/#supported-backends) of our choice
 3. View traces on the backend of our choice
 
 #### Requirements
