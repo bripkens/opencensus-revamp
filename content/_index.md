@@ -2,7 +2,7 @@
 title: ""
 date: 2018-07-19T09:58:45-07:00
 draft: false
-class: "no-pagination no-top-border-header no-search"
+class: "no-pagination no-top-border-header no-search max-text-width"
 ---
 
 {{<title-card>}}
