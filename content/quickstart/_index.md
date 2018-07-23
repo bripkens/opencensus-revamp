@@ -5,7 +5,7 @@ draft: false
 weight: 2
 ---
 
-By completing this course, you will learn how to:
+By completing this quickstart, you will learn how to:
 
 * Collect [metrics](/core-concepts/metrics) from your services
 * [Trace](/core-concepts/tracing) a request as it passes through your services

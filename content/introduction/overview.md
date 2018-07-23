@@ -6,7 +6,9 @@ weight: 1
 class: "resized-logo"
 ---
 
-OpenCensus gives you the tools to track a request as it travels through each of your services, and it helps you gather any metrics that you need about your services.
+OpenCensus provides observability for your microservices and monoliths alike.
+
+It gives you the tools to track a request as it travels through each of your services, and it helps you gather any metrics of interest.
 
 The core functionality of OpenCensus is to collect traces and metrics from your app, display them locally, and send them to any analysis tool. However, OpenCensus provides a lot more than just data insight. This page describes some of that functionality and points you to resources for building it into your app.
 

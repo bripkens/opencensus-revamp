@@ -7,10 +7,12 @@ class: "resized-logo"
 
 ![](/images/go-opencensus.png)
 
-OpenCensus is implemented in Go and this quickstart walks you through:
+In this quickstart, using OpenCensus Go, you will gain hands-on experience with:
 {{% children %}}
 
 For full API references, please take a look at:
 
-* GoDoc [https://godoc.org/go.opencensus.io](https://godoc.org/go.opencensus.io)
-* Github repository [https://github.com/census-instrumentation/opencensus-go](https://github.com/census-instrumentation/opencensus-go)
+Resource|Link
+---|---
+JavaDoc|https://godoc.org/go.opencensus.io
+Github repository|https://github.com/census-instrumentation/opencensus-go

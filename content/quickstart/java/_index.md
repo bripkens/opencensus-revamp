@@ -7,10 +7,12 @@ class: "resized-logo"
 
 ![](/images/java-opencensus.png)
 
-OpenCensus is implemented in Java and this quickstart walks you through:
+In this quickstart, using OpenCensus Java, you will gain hands-on experience with:
 {{% children %}}
 
 For full API references, please take a look at:
 
-* JavaDoc [https://javadoc.io/doc/io.opencensus/opencensus-api/](https://www.javadoc.io/doc/io.opencensus/opencensus-api/)
-* Github repository [https://github.com/census-instrumentation/opencensus-java](https://github.com/census-instrumentation/opencensus-java)
+Resource|Link
+---|---
+JavaDoc|https://javadoc.io/doc/io.opencensus/opencensus-api/
+Github repository|https://github.com/census-instrumentation/opencensus-java
