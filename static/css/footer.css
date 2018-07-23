@@ -67,6 +67,41 @@ div#navigation {
   text-align: left;
 }
 
+footer {
+  background: #232323;
+  text-align: center;
+  margin: 0 0 0 20rem;
+  padding-bottom: 50px;
+}
+
+footer h1,
+footer h2,
+footer h3,
+footer h4,
+footer h5 {
+  border-top: none;
+  color: #DA4453;
+}
+
+footer p,
+footer li,
+footer a {
+  font-size: 1.1em;
+  color: #fff;
+}
+
+footer ul,
+footer li {
+  list-style-type: none !important;
+  padding: 0;
+}
+
+footer li {
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 @media (max-width: 768px) {
   article > section.page #navigation label {
     display: initial;
