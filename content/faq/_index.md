@@ -2,7 +2,7 @@
 title: "FAQ"
 date: 2018-07-16T14:46:09-07:00
 draft: false
-weight: 6
+weight: 90
 class: "resized-logo"
 ---
 

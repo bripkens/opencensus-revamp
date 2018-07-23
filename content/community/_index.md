@@ -2,7 +2,7 @@
 title: "Community"
 date: 2018-07-16T14:46:21-07:00
 draft: false
-weight: 8
+weight: 110
 ---
 
 OpenCensus has an active community of developers who are using, enhancing and building valuable integrations with other software projects. We’d love your help to improve and extend the project. You can reach us via [Email](mailto:census-developers@googlegroups.com), [Gitter channel](https://gitter.im/census-instrumentation/Lobby) or [Twitter](https://twitter.com/opencensusio) to start engaging with the project and its members.  

@@ -2,7 +2,7 @@
 title: "Quickstart"
 date: 2018-07-16T14:28:57-07:00
 draft: false
-weight: 2
+weight: 20
 ---
 
 By completing this quickstart, you will learn how to:
