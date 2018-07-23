@@ -5,4 +5,8 @@ draft: false
 weight: 1000
 ---
 
+OpenCensus provides observability throughout your microservices and monoliths alike.
+
+In this section, we'll cover some advanced topics such as:
+
 {{% children %}}
